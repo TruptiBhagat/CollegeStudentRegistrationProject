@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add Student</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container py-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">Student Registration Form</h3>
+      </div>
+      <div class="card-body">
+		<form action="saveStudent" method="post">
+
+		  <!-- Success & Error Messages -->
+		  <div th:if="${smsg != null}" class="alert alert-success" role="alert" th:text="${smsg}"></div>
+		  <div th:if="${emsg != null}" class="alert alert-danger" role="alert" th:text="${emsg}"></div>
+
+		  <!-- Name -->
+		  <div class="mb-3">
+		    <label class="form-label">Name</label>
+		    <input type="text" name="studentName" class="form-control" required>
+		  </div>
+
+		  <!-- Email Address (make sure this matches entity field name) -->
+		  <div class="mb-3">
+		    <label class="form-label">Email Address</label>
+		    <input type="email" name="studentEmailAdress" class="form-control" required>
+		  </div>
+
+		  <!-- Phone Number -->
+		  <div class="mb-3">
+		    <label class="form-label">Phone Number</label>
+		    <input type="number" name="phoneNo" class="form-control" required>
+		  </div>
+
+		  <!-- Buttons -->
+		  <button type="submit" class="btn btn-primary">Save Student</button>
+		  <a href="getData" class="btn btn-outline-secondary ms-2">View All Students</a>
+		</form>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

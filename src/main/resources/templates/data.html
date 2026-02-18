@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>View Students</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+	<script>
+		function deleteConformation() {
+			return confirm("are you sure want to delete this record");
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Student Portal</a>
+			<div>
+				<form action="saveStudent" method="post" style="display: inline;">
+					<button type="submit" class="btn btn-success me-2">Add Student</button>
+				</form>
+				<a href="/" class="btn btn-outline-light">Home</a>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Main Content -->
+	<div class="container mt-5">
+		<div class="card shadow-sm">
+			<div class="card-header bg-primary text-white">
+				<h3 class="mb-0">List of Registered Students</h3>
+			</div>
+			<div class="card-body p-4">
+				<font style="color: chocolate;">
+					<p th:text="${del}"></p>
+				</font>
+
+
+				<table class="table table-bordered table-hover table-striped">
+					<thead class="table-dark">
+						<tr>
+							<th>SrNo</th>
+							<th>Name</th>
+							<th>Address</th>
+							<th>Phone Number</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="s:${students}">
+							<td th:text="${s.studentId}"> SrNo</td>
+							<td th:text="${s.studentName}">Student Name</td>
+							<td th:text="${s.studentEmailAdress}">Student Address</td>
+							<td th:text="${s.phoneNo}">Phone Number</td>
+
+							<td>
+								<a th:href="@{'/delete?studentId=' + ${s.studentId}}" class="btn btn-danger"
+									onclick="return deleteConformation()"> delete</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
